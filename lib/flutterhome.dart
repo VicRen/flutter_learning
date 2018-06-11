@@ -31,22 +31,22 @@ class _HomeState extends State<StateHome> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        leading: new IconButton(
-            icon: new Icon(Icons.menu),
-            onPressed: () {
-              _pressed("menu");
-            }),
-        title: new Text("Hello Flutter"),
-        actions: <Widget>[
-          new IconButton(
-              icon: new Icon(Icons.search),
-              tooltip: "Search",
-              onPressed: () {
-                _pressed("search");
-              }),
-        ],
-      ),
+//      appBar: new AppBar(
+//        leading: new IconButton(
+//            icon: new Icon(Icons.menu),
+//            onPressed: () {
+//              _pressed("menu");
+//            }),
+//        title: new Text("Hello Flutter"),
+//        actions: <Widget>[
+//          new IconButton(
+//              icon: new Icon(Icons.search),
+//              tooltip: "Search",
+//              onPressed: () {
+//                _pressed("search");
+//              }),
+//        ],
+//      ),
       body: new Center(
         child: new Text(title),
       ),
