@@ -26,15 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   void _popDrawer(DrawerAction drawerAction) {
     Navigator.pop(context);
-    Widget widgetToGo;
-    switch (drawerAction) {
-      case DrawerAction.SETTINGS:
-//        widgetToGo = new SettingsPage();
-        break;
-      case DrawerAction.ABOUT:
-//        widgetToGo = new AboutPage();
-        break;
-    }
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => new ListViewApp()),
@@ -92,7 +83,7 @@ class _HomePageState extends State<HomePage> {
             leading: new IconButton(
               icon: new CircleAvatar(
                 child: new Text('V'),
-                backgroundColor: Colors.lightGreen,
+                backgroundColor: Colors.amberAccent,
               ),
               onPressed: () {
                 _scaffoldKey.currentState.openDrawer();
@@ -122,11 +113,11 @@ class _HomePageState extends State<HomePage> {
         child: new Container(
             padding: new EdgeInsets.all(32.0), child: _buildDrawer()),
       ),
-      floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.multiline_chart),
-        backgroundColor: Colors.red,
-        onPressed: () {},
-      ),
+      // floatingActionButton: new FloatingActionButton(
+      //   child: new Icon(Icons.multiline_chart),
+      //   backgroundColor: Colors.red,
+      //   onPressed: () {},
+      // ),
     );
   }
 }
