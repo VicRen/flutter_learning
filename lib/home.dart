@@ -71,13 +71,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
-    new GlobalKey<ScaffoldState>();
+        new GlobalKey<ScaffoldState>();
 
     return Scaffold(
       key: _scaffoldKey,
       body: new CustomScrollView(
         slivers: <Widget>[
           new SliverAppBar(
+            actions: <Widget>[
+              new IconButton(
+                icon: new Icon(Icons.search),
+                onPressed: () {},
+              ),
+              new IconButton(
+                icon: new Icon(Icons.more_vert),
+                onPressed: () {},
+              )
+            ],
             pinned: true,
             expandedHeight: 96.0,
             leading: new IconButton(
@@ -93,19 +103,19 @@ class _HomePageState extends State<HomePage> {
           ),
           new SliverList(
             delegate: new SliverChildBuilderDelegate(
-                    (BuildContext context, int index) {
-                  return new Card(
-                    child: new Container(
-                      padding: EdgeInsets.all(32.0),
-                      child: new ListTile(
-                        leading: new CircleAvatar(
-                          child: new Text('$index'),
-                        ),
-                        title: new Text(_data[index]),
-                      ),
+                (BuildContext context, int index) {
+              return new Card(
+                child: new Container(
+                  padding: EdgeInsets.all(32.0),
+                  child: new ListTile(
+                    leading: new CircleAvatar(
+                      child: new Text('$index'),
                     ),
-                  );
-                }),
+                    title: new Text(_data[index]),
+                  ),
+                ),
+              );
+            }),
           )
         ],
       ),
