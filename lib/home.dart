@@ -37,9 +37,7 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-          child: new FlutterLogo(
-            size: 96.0,
-          ),
+          child: new Image.asset('images/thumb.jpeg'),
         ),
         new Text(
           'Vic',
