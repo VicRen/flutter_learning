@@ -121,11 +121,11 @@ class _HomePageState extends State<HomePage> {
         child: new Container(
             padding: new EdgeInsets.all(32.0), child: _buildDrawer()),
       ),
-      // floatingActionButton: new FloatingActionButton(
-      //   child: new Icon(Icons.multiline_chart),
-      //   backgroundColor: Colors.red,
-      //   onPressed: () {},
-      // ),
+      floatingActionButton: new FloatingActionButton(
+        child: new Icon(Icons.multiline_chart),
+        backgroundColor: Colors.red,
+        onPressed: () {},
+      ),
     );
   }
 }
