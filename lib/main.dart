@@ -65,10 +65,6 @@ class _FlutterState extends State<FlutterLearning> {
 
   @override
   Widget build(BuildContext context) {
-//    return new MediaQuery(
-//        data: new MediaQueryData(),
-//        child: new MaterialApp(home: new MyHomePage())
-//    );
       return MaterialApp(
         title: 'LoginDemo',
         home: new Scaffold(
