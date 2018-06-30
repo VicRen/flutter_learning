@@ -1,13 +1,11 @@
-import 'package:HelloFlutter/animatedlist.dart';
-import 'package:HelloFlutter/appbarbasic.dart';
-import 'package:HelloFlutter/appbarbottomwidget.dart';
-import 'package:HelloFlutter/expansiontitle.dart';
 import 'package:HelloFlutter/flutterhome.dart';
-import 'package:HelloFlutter/imagepicker.dart';
+import 'package:HelloFlutter/home.dart';
 import 'package:HelloFlutter/login.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(new FlutterLearning());
+void main() => runApp(new MaterialApp(
+  home: new HomePage(),
+));
 
 class FlutterLearning extends StatefulWidget {
 
