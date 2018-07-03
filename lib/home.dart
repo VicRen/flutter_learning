@@ -77,6 +77,13 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         new ListTile(
+          leading: new Icon(Icons.help),
+          title: new Text('Memory'),
+          onTap: () {
+            _popDrawer(DrawerAction.SETTINGS);
+          },
+        ),
+        new ListTile(
           leading: new Icon(Icons.info),
           title: new Text('About'),
           onTap: () {
