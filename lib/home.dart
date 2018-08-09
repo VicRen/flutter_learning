@@ -12,7 +12,7 @@ enum DrawerAction {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> _data = new List<String>();
+  List<String> _data = List<String>();
 
   @override
   void initState() {
@@ -28,43 +28,43 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => new ListViewApp()),
+      MaterialPageRoute(builder: (context) => ListViewApp()),
     );
   }
 
   Widget _buildDrawer() {
-    return new Column(
+    return Column(
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(top: 32.0, bottom: 16.0),
-          child: new Image.asset('images/thumb.jpeg'),
+          child: Image.asset('images/thumb.jpeg'),
         ),
-        new Text(
+        Text(
           'Vic',
           style: Theme.of(context).textTheme.title,
         ),
-        new Text(
+        Text(
           '18605745829',
           style: Theme.of(context).textTheme.subhead,
         ),
-        new Divider(),
-        new ListTile(
-          leading: new Icon(Icons.settings),
-          title: new Text('Settings'),
+        Divider(),
+        ListTile(
+          leading: Icon(Icons.settings),
+          title: Text('Settings'),
           onTap: () {
             _popDrawer(DrawerAction.SETTINGS);
           },
         ),
-        new ListTile(
-          leading: new Icon(Icons.home),
-          title: new Text('Home'),
+        ListTile(
+          leading: Icon(Icons.home),
+          title: Text('Home'),
           onTap: () {
             _popDrawer(DrawerAction.ABOUT);
           },
         ),
-        new ListTile(
-          leading: new Icon(Icons.info),
-          title: new Text('About'),
+        ListTile(
+          leading: Icon(Icons.info),
+          title: Text('About'),
           onTap: () {
             _popDrawer(DrawerAction.ABOUT);
           },
@@ -76,47 +76,52 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<ScaffoldState> _scaffoldKey =
-        new GlobalKey<ScaffoldState>();
+        GlobalKey<ScaffoldState>();
 
     return Scaffold(
       key: _scaffoldKey,
-      body: new CustomScrollView(
+      body: CustomScrollView(
         slivers: <Widget>[
-          new SliverAppBar(
+          SliverAppBar(
             actions: <Widget>[
-              new IconButton(
-                icon: new Icon(Icons.search),
+              IconButton(
+                icon: Icon(Icons.search),
                 onPressed: () {},
               ),
-              new IconButton(
-                icon: new Icon(Icons.more_vert),
+              IconButton(
+                icon: Icon(Icons.more_vert),
                 onPressed: () {},
               )
             ],
             pinned: true,
             expandedHeight: 96.0,
-            leading: new IconButton(
-              icon: new CircleAvatar(
-                child: new Text('V'),
+            leading: IconButton(
+              icon: CircleAvatar(
+                child: Text('V'),
                 backgroundColor: Colors.amberAccent,
               ),
               onPressed: () {
                 _scaffoldKey.currentState.openDrawer();
               },
             ),
-            title: new Text('Home'),
+            title: Text('Home'),
           ),
-          new SliverList(
-            delegate: new SliverChildBuilderDelegate(
+          Banner(
+            child: Center(
+              
+            ),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
-              return new Card(
-                child: new Container(
+              return Card(
+                child: Container(
                   padding: EdgeInsets.all(32.0),
-                  child: new ListTile(
-                    leading: new CircleAvatar(
-                      child: new Text('$index'),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      child: Text('$index'),
                     ),
-                    title: new Text(_data[index]),
+                    title: Text(_data[index]),
                   ),
                 ),
               );
@@ -124,12 +129,12 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      drawer: new Drawer(
-        child: new Container(
-            padding: new EdgeInsets.all(32.0), child: _buildDrawer()),
+      drawer: Drawer(
+        child: Container(
+            padding: EdgeInsets.all(32.0), child: _buildDrawer()),
       ),
-      floatingActionButton: new FloatingActionButton(
-        child: new Icon(Icons.multiline_chart),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.multiline_chart),
         backgroundColor: Colors.red,
         onPressed: () {},
       ),
