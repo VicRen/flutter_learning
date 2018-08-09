@@ -10,19 +10,29 @@ class login extends StatelessWidget {
   }) : super(key:key);
 
   final VoidCallback onSubmit;
-  static final TextEditingController _user = new TextEditingController();
-  static final TextEditingController _pass = new TextEditingController();
+  static final TextEditingController _user = TextEditingController();
+  static final TextEditingController _pass = TextEditingController();
 
   String get username => _user.text;
   String get password => _pass.text;
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new TextField(controller: _user, decoration: new InputDecoration(hintText: "Enter a username")),
-        new TextField(controller: _pass, decoration: new InputDecoration(hintText: "Enter a password"), obscureText: true,),
-        new RaisedButton(child: new Text("Submit"), onPressed: onSubmit),
+        TextField(controller: _user, decoration: InputDecoration(hintText: "Enter a username")),
+        TextField(controller: _pass, decoration: InputDecoration(hintText: "Enter a password"), obscureText: true,),
+        RaisedButton(child: Text("Submit"), onPressed: onSubmit),
+        Banner(
+          child: Column(
+            children: <Widget>[
+              Text('Testing'),
+              FlatButton(child: Text('Ok'), onPressed: null,)
+            ],
+          ),
+          message: 'Testing',
+          location: BannerLocation.topStart,
+        ),
       ],
     );
   }

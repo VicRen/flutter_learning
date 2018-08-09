@@ -4,7 +4,7 @@ import 'package:HelloFlutter/login.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(new MaterialApp(
-  home: new HomePage(),
+  home: new FlutterLearning(),
 ));
 
 class FlutterLearning extends StatefulWidget {
