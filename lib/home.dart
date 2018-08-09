@@ -106,11 +106,6 @@ class _HomePageState extends State<HomePage> {
             ),
             title: Text('Home'),
           ),
-          Banner(
-            child: Center(
-              
-            ),
-          ),
           SliverList(
             delegate: SliverChildBuilderDelegate(
                 (BuildContext context, int index) {
