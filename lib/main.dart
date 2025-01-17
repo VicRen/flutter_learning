@@ -1,7 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MyApp());
+}
+
+class Package {
+  final String name;
+  final String latestVersion;
+  final String? description;
+
+  Package(this.name, this.latestVersion, {this.description});
+
+  @override
+  String toString() {
+    return 'Package{name: $name, latestVersion: $latestVersion, description: $description}';
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -56,6 +72,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _myCount = 0;
+  String _stateCode = 'Request';
 
   void _incrementCounter() {
     setState(() {
@@ -66,6 +84,33 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+  }
+
+  void _incrementMyCounter() {
+    setState(() {
+      _myCount++;
+    });
+  }
+
+  void _requestUrl(String url) async {
+    final httpPackageUrl = Uri.https('dart.dev', 'f/packages/http.json');
+    final httpPackageResponse = await http.get(httpPackageUrl);
+    _stateCode = httpPackageResponse.statusCode.toString();
+    setState(() {
+      _stateCode;
+    });
+    if (httpPackageResponse.statusCode != 200) {
+      print('Failed to retrieve the http package!');
+      return;
+    }
+    final json = jsonDecode(httpPackageResponse.body);
+    final package = Package(
+      json['name'],
+      json['latestVersion'],
+      description: json['description'],
+    );
+    print(httpPackageResponse.body);
+    print(package);
   }
 
   @override
@@ -112,6 +157,10 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            Text(_stateCode),
+            ElevatedButton(onPressed: () {
+              _requestUrl('');
+            }, child: Text('Next')),
           ],
         ),
       ),
