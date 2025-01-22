@@ -1,26 +1,24 @@
-import 'package:flutter_learning/common/navigation/navigation_service.dart';
-import 'package:flutter_learning/features/splash/data/repositories/auth_repository_impl.dart';
-import 'package:flutter_learning/features/splash/domain/repositories/auth_repository.dart';
-import 'package:flutter_learning/shared/data/auth_api_client.dart';
 import 'package:get_it/get_it.dart';
 
+import 'features/splash/data/repositories/auth_repository_impl.dart';
+import 'features/splash/domain/repositories/auth_repository.dart';
 import 'features/splash/domain/usecase/auto_login_user.dart';
 import 'features/splash/presentation/bloc/splash_bloc.dart';
+import 'shared/data/auth_api_client.dart';
 
 final locator = GetIt.instance;
 
-Future<void> init() async {
-  locator
-      .registerLazySingleton<NavigationService>(() => NavigationServiceImpl());
+Future<void> setupLocator() async {
+  // Network
+  locator.registerLazySingleton(() => AuthApiClient());
 
-  locator.registerLazySingleton<AuthApiClient>(() => AuthApiClient());
-
+  // Repositories
   locator.registerLazySingleton<AuthRepository>(
-      () => AuthRepositoryImpl(locator<AuthApiClient>()));
+      () => AuthRepositoryImpl(locator()));
 
-  locator.registerLazySingleton<AutoLoginUser>(
-      () => AutoLoginUser(authRepository: locator<AuthRepository>()));
+  // Use cases
+  locator.registerLazySingleton(() => AutoLoginUser(locator()));
 
-  locator.registerFactory<SplashBloc>(
-      () => SplashBloc(autoLoginUserUseCase: locator<AutoLoginUser>()));
+  // Bloc
+  locator.registerFactory(() => SplashBloc(locator()));
 }

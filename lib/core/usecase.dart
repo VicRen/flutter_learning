@@ -1,7 +1,13 @@
-import 'dart:async';
+import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
+
+import 'failures.dart';
 
 abstract class UseCase<Type, Params> {
-  FutureOr<Type> call(Params params);
+  Future<Either<Failure, Type>> call([Params params]);
 }
 
-class NoParams {}
+class NoParams extends Equatable {
+  @override
+  List<Object> get props => [];
+}

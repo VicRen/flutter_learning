@@ -1,21 +1,27 @@
-import 'package:bloc/bloc.dart';
-import 'package:flutter_learning/features/splash/domain/usecase/auto_login_user.dart';
-import 'package:flutter_learning/features/splash/presentation/bloc/splash_event.dart';
-import 'package:flutter_learning/features/splash/presentation/bloc/splash_state.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/usecase/auto_login_user.dart';
+
+part 'splash_event.dart';
+part 'splash_state.dart';
 
 class SplashBloc extends Bloc<SplashEvent, SplashState> {
-  final AutoLoginUser autoLoginUserUseCase;
+  final AutoLoginUser autoLoginUser;
 
-  SplashBloc({required this.autoLoginUserUseCase}) : super(SplashInitial()) {
-    on<SplashInitialized>(event, emit) async {
+  SplashBloc(this.autoLoginUser) : super(SplashInitial()) {
+    on<AutoLoginEvent>((event, emit) async {
+      emit(SplashLoading());
       try {
-        final user = await autoLoginUserUseCase.call(
-            AutoLoginParams(deviceId: 'deviceId'));
-        emit(AutoLoginSuccessState());
-        print('自动登录成功: ${user.uid}');
+        emit(SplashLogining());
+        final result = await autoLoginUser.call();
+        result.fold(
+          (failure) => emit(SplashFailure(errorMessage: failure.toString())),
+          (responseBody) => emit(SplashSuccess(responseBody: responseBody)),
+        );
       } catch (e) {
-        print('自动登录异常: $e');
+        emit(SplashFailure(errorMessage: e.toString()));
       }
-    }
+    });
   }
 }

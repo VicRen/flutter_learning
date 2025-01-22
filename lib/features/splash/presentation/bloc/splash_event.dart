@@ -1,3 +1,10 @@
-abstract class SplashEvent {}
+part of 'splash_bloc.dart';
 
-class SplashInitialized extends SplashEvent {}
+abstract class SplashEvent extends Equatable {
+  const SplashEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class AutoLoginEvent extends SplashEvent {}
