@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_learning/features/splash/presentation/pages/splash_page.dart';
 import 'package:flutter_learning/locator.dart';
+import 'package:flutter_learning/router/app_router.dart';
+import 'package:flutter_learning/router/router_name.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,8 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SplashPage(),
+      onGenerateRoute: AppRouter.generateRoute,
       title: 'Flutter Learning App',
+      initialRoute: RouteName.splash,
     );
   }
 }

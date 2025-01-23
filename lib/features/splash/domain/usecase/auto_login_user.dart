@@ -18,9 +18,9 @@ class AutoLoginUser implements UseCase<String, NoParams> {
       final result = await repository.autoLogin('deviceId');
       return Right(result.uid);
     } on ServerException {
-      return Left(ServerFailure());
+      return Left(ServerFailure(message: '服务器错误'));
     } on DeviceException {
-      return Left(DeviceIdFailure());
+      return Left(DeviceIdFailure(message: '无法获取设备 ID'));
     }
   }
 }

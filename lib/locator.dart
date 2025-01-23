@@ -1,3 +1,4 @@
+import 'package:flutter_learning/common/navigation/navigation_service.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/splash/data/repositories/auth_repository_impl.dart';
@@ -9,6 +10,9 @@ import 'shared/data/auth_api_client.dart';
 final locator = GetIt.instance;
 
 Future<void> setupLocator() async {
+  // Navigation
+  locator
+      .registerLazySingleton<NavigationService>(() => NavigationServiceImpl());
   // Network
   locator.registerLazySingleton(() => AuthApiClient());
 
@@ -20,5 +24,5 @@ Future<void> setupLocator() async {
   locator.registerLazySingleton(() => AutoLoginUser(locator()));
 
   // Bloc
-  locator.registerFactory(() => SplashBloc(locator()));
+  locator.registerFactory(() => SplashBloc(locator(), locator()));
 }
