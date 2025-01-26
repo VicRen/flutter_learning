@@ -7,11 +7,17 @@ abstract class Failure extends Equatable {
 
   @override
   List<Object> get props => [message]; // 将 message 添加到 props 中
+
+  @override
+  String toString() {
+    return message;
+  }
 }
 
 // General failures
 class ServerFailure extends Failure {
-  const ServerFailure({String message = '服务器错误'}) : super(message: message);
+  const ServerFailure({String message = '服务器错误，请稍后再试。'})
+      : super(message: message);
 }
 
 class DeviceIdFailure extends Failure {
